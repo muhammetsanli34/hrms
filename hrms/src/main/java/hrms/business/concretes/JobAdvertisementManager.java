@@ -40,9 +40,24 @@ public class JobAdvertisementManager implements JobAdvertisementService
 		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.findByIsActiveTrueAndEmployer_CompanyName(companyName));
 	}
 
-	//@Override
-	//public DataResult<List<JobAdvertisement>> getAllSortedByDate() {
-		//return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.findByIsActiveTrueOrderByReleaseDateDesc());
-	//}
+	@Override
+	public Result setAdvertisementToPassive(int id) {
+		var updatedAdvertisement=this.jobAdvertisementDao.findById(id).get();
+		updatedAdvertisement.setActive(false);
+		this.jobAdvertisementDao.save(updatedAdvertisement);
+		return new SuccessResult("İlan pasif hale getirildi");
+	}
+
+	public Result setAdvertisementToActive(int id) {
+		var updatedAdvertisement=this.jobAdvertisementDao.findById(id).get();
+		updatedAdvertisement.setActive(true);
+		this.jobAdvertisementDao.save(updatedAdvertisement);
+		return new SuccessResult("İlan aktif hale getirildi");
+	}
+	
+	@Override
+	public DataResult<List<JobAdvertisement>> getAllSortedByDate() {
+		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.findByIsActiveTrueOrderByReleaseDateDesc());
+	}
 
 }

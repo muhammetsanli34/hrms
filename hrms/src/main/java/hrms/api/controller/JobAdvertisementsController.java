@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -39,6 +40,23 @@ public class JobAdvertisementsController
 	@GetMapping("/getActiveAdvertisementsByEmployers")
 	public DataResult<List<JobAdvertisement>> getActiveAdvertisementsByEmployer(String companyName) {
 		return this.jobAdvertisementService.getActiveAdvertisementsByEmployer(companyName);
+	}
+	
+	@GetMapping("/setAdvertisementToPassive")
+	Result closeAdvertisement(int id)
+	{
+		return this.jobAdvertisementService.setAdvertisementToPassive(id);
+	}
+	
+	@GetMapping("/setAdvertisementToActive")
+	Result setAdvertisementToActive(int id)
+	{
+		return this.jobAdvertisementService.setAdvertisementToActive(id);
+	}
+	
+	@GetMapping("/getAllSortedByDate")
+	public DataResult<List<JobAdvertisement>> getAllSortedByDate() {
+		return this.jobAdvertisementService.getAllSortedByDate();
 	}
 	
 }

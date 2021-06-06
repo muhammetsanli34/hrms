@@ -12,7 +12,11 @@ public interface JobAdvertisementService
 	
 	DataResult<List<JobAdvertisement>> getActiveAdvertisements();
 	
-	DataResult<List<JobAdvertisement>> getActiveAdvertisementsByEmployer(String companyName);
+	DataResult<List<JobAdvertisement>> getActiveAdvertisementsByEmployer(String companyName);	
 	
-	//DataResult<List<JobAdvertisement>> getAllSortedByDate();
+	Result setAdvertisementToPassive(int id);
+	
+	Result setAdvertisementToActive(int id);
+	
+	DataResult<List<JobAdvertisement>> getAllSortedByDate();
 }
