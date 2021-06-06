@@ -53,7 +53,7 @@ public class JobAdvertisementsController
 	{
 		return this.jobAdvertisementService.setAdvertisementToActive(id);
 	}
-	
+	 
 	@GetMapping("/getAllSortedByDate")
 	public DataResult<List<JobAdvertisement>> getAllSortedByDate() {
 		return this.jobAdvertisementService.getAllSortedByDate();
